@@ -501,6 +501,22 @@ export class Table extends React.Component {
             )
         }
         return <table {...props}>
+            {pagination === true ?
+             <Paginator colSpan={columns.length}
+                 pageButtonLimit={pageButtonLimit}
+                 numPages={numPages}
+                 currentPage={currentPage}
+                 onPageChange={page => {
+                     this.setState({ currentPage: page });
+                     if (this.props.onPageChange) {
+                        this.props.onPageChange(page)
+                     }
+                 }}
+                 previousPageLabel={this.props.previousPageLabel}
+                 nextPageLabel={this.props.nextPageLabel}
+                 key="paginator"/>
+             : null}
+
             {tableHeader}
             <tbody className="reactable-data" key="tbody">
                 {currentChildren.length > 0 ? currentChildren : noDataText}
@@ -518,7 +534,7 @@ export class Table extends React.Component {
                  }}
                  previousPageLabel={this.props.previousPageLabel}
                  nextPageLabel={this.props.nextPageLabel}
-                 key="paginator"/>
+                 key="paginator1"/>
              : null}
             {this.tfoot}
         </table>;

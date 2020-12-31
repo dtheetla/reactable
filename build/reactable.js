@@ -1531,6 +1531,19 @@ window.ReactDOM["default"] = window.ReactDOM;
                 return _react['default'].createElement(
                     'table',
                     props,
+                    pagination === true ? _react['default'].createElement(_paginator.Paginator, { colSpan: columns.length,
+                        pageButtonLimit: pageButtonLimit,
+                        numPages: numPages,
+                        currentPage: currentPage,
+                        onPageChange: function (page) {
+                            _this.setState({ currentPage: page });
+                            if (_this.props.onPageChange) {
+                                _this.props.onPageChange(page);
+                            }
+                        },
+                        previousPageLabel: this.props.previousPageLabel,
+                        nextPageLabel: this.props.nextPageLabel,
+                        key: 'paginator' }) : null,
                     tableHeader,
                     _react['default'].createElement(
                         'tbody',
@@ -1549,7 +1562,7 @@ window.ReactDOM["default"] = window.ReactDOM;
                         },
                         previousPageLabel: this.props.previousPageLabel,
                         nextPageLabel: this.props.nextPageLabel,
-                        key: 'paginator' }) : null,
+                        key: 'paginator1' }) : null,
                     this.tfoot
                 );
             }
